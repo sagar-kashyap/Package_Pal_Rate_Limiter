@@ -4,7 +4,7 @@ import PackageFinderForm from './components/PackageFinderForm';
 import PackageResultCard from './components/PackageResultCard';
 import LoadingSpinner from './components/LoadingSpinner';
 import ErrorMessage from './components/ErrorMessage';
-import { findSimilarPackages } from './services/geminiService';
+import { findSimilarPackages, findSimilarPackagesWithUserKey } from './services/geminiService';
 import { PackageSuggestion, FormField } from './types';
 import { DEFAULT_SOURCE_LANGUAGE, DEFAULT_TARGET_LANGUAGE } from './constants';
 
@@ -13,6 +13,7 @@ const App: React.FC = () => {
     sourcePackage: '',
     sourceLanguage: DEFAULT_SOURCE_LANGUAGE,
     targetLanguage: DEFAULT_TARGET_LANGUAGE,
+     userApiKey: '',
   });
   const [results, setResults] = useState<PackageSuggestion[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -35,7 +36,7 @@ const App: React.FC = () => {
     // that would need reassessment.
 
     try {
-      const { sourcePackage, sourceLanguage, targetLanguage } = formData;
+      const { sourcePackage, sourceLanguage, targetLanguage, userApiKey } = formData;
       if (sourcePackage.trim() === '') {
         setError("Package name cannot be empty.");
         setIsLoading(false);
@@ -46,7 +47,13 @@ const App: React.FC = () => {
         setIsLoading(false);
         return;
       }
-      const suggestions = await findSimilarPackages(sourcePackage, sourceLanguage, targetLanguage);
+      // const suggestions = await findSimilarPackages(sourcePackage, sourceLanguage, targetLanguage);
+       let suggestions: PackageSuggestion[];
+      if (userApiKey.trim()) {
+        suggestions = await findSimilarPackagesWithUserKey(sourcePackage, sourceLanguage, targetLanguage, userApiKey);
+      } else {
+        suggestions = await findSimilarPackages(sourcePackage, sourceLanguage, targetLanguage);
+      }
       setResults(suggestions);
     } catch (err: any) {
       setError(err.message || 'An unexpected error occurred.');

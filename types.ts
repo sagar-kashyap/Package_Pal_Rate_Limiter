@@ -13,5 +13,5 @@ export enum FormField {
   SourcePackage = "sourcePackage",
   SourceLanguage = "sourceLanguage",
   TargetLanguage = "targetLanguage",
+  UserApiKey = "userApiKey",
 }
-    

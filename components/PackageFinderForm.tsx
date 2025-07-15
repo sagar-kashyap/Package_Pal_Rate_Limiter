@@ -8,6 +8,7 @@ interface PackageFinderFormProps {
     sourcePackage: string;
     sourceLanguage: string;
     targetLanguage: string;
+     userApiKey: string;
   };
   onInputChange: (field: FormField, value: string) => void;
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -77,6 +78,24 @@ const PackageFinderForm: React.FC<PackageFinderFormProps> = ({
             </option>
           ))}
         </select>
+      </div>
+
+       <div>
+        <label htmlFor="userApiKey" className={commonLabelClasses}>
+          Your Gemini API Key <span className="text-slate-400">(Optional)</span>
+        </label>
+        <input
+          type="password"
+          id="userApiKey"
+          name="userApiKey"
+          value={formData.userApiKey}
+          onChange={(e) => onInputChange(FormField.UserApiKey, e.target.value)}
+          placeholder="Enter your key to use the API directly"
+          className={commonInputClasses}
+        />
+         <p className="text-xs text-slate-400 mt-2">
+            If a key is provided, API calls will be made from your browser. Otherwise, the app's shared backend service will be used.
+          </p>
       </div>
 
       <button
