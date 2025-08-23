@@ -2,6 +2,7 @@
 export interface PackageSuggestion {
   name: string;
   description: string;
+  url?: string;
 }
 
 export interface LanguageOption {

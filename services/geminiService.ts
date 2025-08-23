@@ -60,7 +60,7 @@ export const findSimilarPackagesWithUserKey = async (
 ): Promise<PackageSuggestion[]> => {
   try {
     const ai = new GoogleGenAI({ apiKey });
-    const prompt = `I am looking for packages in ${targetLang} that are similar in functionality to the ${sourceLang} package named "${sourcePackage}". Provide a list of up to 5 relevant packages.`;
+    const prompt = `I am looking for packages in ${targetLang} that are similar in functionality to the ${sourceLang} package named "${sourcePackage}". Provide a list of up to 5 relevant packages. For each package, include its name, a brief one-sentence description, and a direct URL to its official documentation or package manager page (like npmjs.com, pypi.org, pkg.go.dev).`;
 
     const response = await ai.models.generateContent({
       model: GEMINI_MODEL_NAME,
@@ -80,6 +80,10 @@ export const findSimilarPackagesWithUserKey = async (
               description: {
                 type: Type.STRING,
                 description: "A brief one-sentence description of the package's primary purpose.",
+              },
+               url: {
+                type: Type.STRING,
+                description: "The URL to the package's official documentation or package manager page (e.g., npmjs.com, pypi.org)."
               },
             },
             required: ["name", "description"],

@@ -7,6 +7,7 @@ dotenv.config();
 interface PackageSuggestion {
   name: string;
   description: string;
+  url?: string;
 }
 
 const apiKey = process.env.GEMINI_API_KEY;
@@ -30,11 +31,11 @@ export const findSimilarPackagesInBackend = async (
   const prompt = `
     I am looking for packages in ${targetLang} that are similar in functionality to the ${sourceLang} package named "${sourcePackage}".
     Please provide a list of up to 5 such packages, ordered from most relevant to least relevant.
-    For each package, provide its name and a brief one-sentence description of its primary purpose.
-    Format the output as a JSON array of objects, where each object has "name" (string) and "description" (string) keys. For example:
+    For each package, include its name, a brief one-sentence description of its primary purpose, and a direct URL to its official documentation or package manager page (like npmjs.com, pypi.org, pkg.go.dev).
+    Format the output as a JSON array of objects, where each object has "name" (string), "description" (string) and "url" (string) keys. For example:
     [
-      {"name": "PackageA", "description": "Description of PackageA."},
-      {"name": "PackageB", "description": "Description of PackageB."}
+      {"name": "PackageA", "description": "Description of PackageA.", "url": "url of PackageA official documentation or package manager page"},
+      {"name": "PackageB", "description": "Description of PackageB.", "url": "url of PackageB official documentation or package manager page"}
     ]
     If you cannot find any relevant packages or are unsure, return an empty JSON array [].
   `;
