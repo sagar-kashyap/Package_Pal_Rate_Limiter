@@ -3,7 +3,7 @@ import { PackageSuggestion } from '../types';
 import { GEMINI_MODEL_NAME } from '../constants';
 import { GoogleGenAI, Type } from "@google/genai";
 // The backend server URL. Adjust if your backend runs on a different port or host.
-const BACKEND_API_URL = 'http://localhost:3001/api'; // Assuming proxy setup or same domain
+const BACKEND_API_URL = `${process.env.SERVER_URL}/api`; // Assuming proxy setup or same domain
 
 export const findSimilarPackages = async (
   sourcePackage: string,
