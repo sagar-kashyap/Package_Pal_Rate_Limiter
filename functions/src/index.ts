@@ -7,9 +7,12 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
-import {onRequest} from "firebase-functions/v2/https";
-import * as logger from "firebase-functions/logger";
+import * as functions from "firebase-functions";
+import app from "./server"; // Import your Express app
 
+// Expose the Express app as a single Cloud Function.
+// The name 'api' can be anything you want. It becomes the function name.
+export const api = functions.https.onRequest(app);
 // Start writing functions
 // https://firebase.google.com/docs/functions/typescript
 

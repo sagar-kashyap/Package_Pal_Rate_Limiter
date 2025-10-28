@@ -11,11 +11,11 @@ import { findSimilarPackagesInBackend } from './geminiService';
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3001;
+// const port = process.env.PORT || 3001;
 
 // --- CORS Setup ---
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: process.env.FRONTEND_URL || process.env.FRONTEND_URL2 || 'http://localhost:5173',
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
@@ -140,15 +140,17 @@ async function startServer() {
     res.status(500).send({ message: 'Something broke!' });
   });
 // exports.app = functions.https.onRequest(app);
-  app.listen(port, () => {
-    console.log(`Backend server listening on http://localhost:${port}`);
-    if (!process.env.GEMINI_API_KEY) {
-      console.warn('WARNING: API_KEY is not set in the environment. Gemini API calls will fail.');
-    }
-  });
+  // app.listen(port, () => {
+  //   console.log(`Backend server listening on http://localhost:${port}`);
+  //   if (!process.env.GEMINI_API_KEY) {
+  //     console.warn('WARNING: API_KEY is not set in the environment. Gemini API calls will fail.');
+  //   }
+  // });
 }
 
 startServer().catch(err => {
     console.error("Failed to start the server:", err);
     global.process.exit(1);
 });
+
+export default app;
