@@ -13,12 +13,12 @@
 <p align="center">
   <!-- IMPORTANT: Update the links to point to YOUR repo and YOUR license -->
   <a href="https://github.com/sagar-kashyap/Package_Pal_Rate_Limiter/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/sagar-kashyap/Package_Pal_Rate_Limiter?style=for-the-badge" alt="License">
+    <img src="https://img.shields.io/github/license/sagar-kashyap/Package_Pal_Rate_Limiter" alt="License">
   </a>
   <a href="https://github.com/sagar-kashyap/Package_Pal_Rate_Limiter/stargazers">
-    <img src="https://img.shields.io/github/stars/sagar-kashyap/Package_Pal_Rate_Limiter?style=for-the-badge&logo=github&color=gold" alt="Stars">
+    <img src="https://img.shields.io/github/stars/sagar-kashyap/Package_Pal_Rate_Limiter" alt="Stars">
   </a>
-    <img src="https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge" alt="Version">
+    <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version">
 </p>
 
 <p align="center">
