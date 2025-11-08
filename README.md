@@ -27,7 +27,7 @@
 
 ---
 
-![PackagePal Demo GIF](https://raw.githubusercontent.comsagar-kashyap/Package_Pal_Rate_Limiter/main/public/packagepal-demo.gif)
+![PackagePal Demo GIF](https://github.com/sagar-kashyap/Package_Pal_Rate_Limiter/blob/main/how%20to%20use%20package%20pal.gif)
 
 ## 🤔 Why PackagePal?
 
