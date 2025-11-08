@@ -65,9 +65,12 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-sky-900 py-8 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
       <header className="text-center mb-10">
-        <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300 mb-2">
-          Package Pal
-        </h1>
+        <span className="text-5xl font-extrabold mr-2">
+         📦 
+        </span>
+        <span className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300 mb-2">
+         Package Pal
+        </span>
         <p className="text-lg text-slate-400 max-w-2xl mx-auto">
           Discover equivalent or similar software packages across different programming languages with the power of AI.
         </p>

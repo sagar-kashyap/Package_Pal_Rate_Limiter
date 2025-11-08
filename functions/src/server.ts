@@ -15,7 +15,11 @@ const app = express();
 
 // --- CORS Setup ---
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || process.env.FRONTEND_URL2 || 'http://localhost:5173',
+  origin: [
+    process.env.FRONTEND_URL, 
+    process.env.FRONTEND_URL2, 
+    'http://localhost:5173'
+  ].filter((origin): origin is string => origin !== undefined),
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
