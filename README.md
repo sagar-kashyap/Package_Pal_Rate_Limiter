@@ -22,7 +22,7 @@
 </p>
 
 <p align="center">
-  <a href="https://packagepal-ec0c3.web.app/"><strong>Visit the Live App »</strong></a>
+  <a href="https://packagepal.dev"><strong>Visit the Live App »</strong></a>
 </p>
 
 ---
