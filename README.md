@@ -122,7 +122,7 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
 ## 📬 Contact
 
-[Sagar Kashyap] - [@YourTwitterHandle](https://twitter.com/Sagar_ketchup) - [sagarkashyap.cc@gmail.com](mailto:sagarkashyap.cc@gmail.com)
+[Sagar Kashyap] - [@Sagar_ketchup](https://twitter.com/Sagar_ketchup) - [sagarkashyap.cc@gmail.com](mailto:sagarkashyap.cc@gmail.com)
 
 Project Link: [https://github.com/sagar-kashyap/Package_Pal_Rate_Limiter](https://github.com/sagar-kashyap/Package_Pal_Rate_Limiter)
 # Run and deploy your AI Studio app
