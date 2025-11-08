@@ -74,8 +74,8 @@ Follow these instructions to get a copy of the project up and running on your lo
     cd Package_Pal_Rate_Limiter
     ```
 
-2.  **Setup the Backend (`/server`):**
-    *   Navigate to the server directory: `cd server/functions`
+2.  **Setup the Backend (`/functions`):**
+    *   Navigate to the server directory: `cd src`
     *   Install dependencies: `npm install`
     *   Create a `.env` file by copying the example: `cp .env.example .env`
     *   Add your environment variables to the `.env` file:
@@ -102,16 +102,17 @@ Follow these instructions to get a copy of the project up and running on your lo
 ### Running the Application
 
 1.  **Start the Backend Server:**
-    *   From the `/server/functions` directory:
+    *   From the `/functions` directory:
         ```sh
-        npm run dev
+        npx ts-node src/server.ts
+        
         ```
-    *   The server should now be running on `http://localhost:8080`.
+    *   The server should now be running on `http://localhost:3001`.
 
 2.  **Start the Frontend Development Server:**
     *   From the `/Package_Pal_Rate_Limiter` directory:
         ```sh
-        npx ts-node src/server.ts
+        npm run dev
         ```
     *   Open your browser and navigate to `http://localhost:5173` (or the URL provided by Vite).
 
