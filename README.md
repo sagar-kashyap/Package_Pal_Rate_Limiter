@@ -22,12 +22,12 @@
 </p>
 
 <p align="center">
-  <a href="https://packagepal-ec0c3.web.app/"><strong>Visit the Live App »</strong></a>
+  <a href="https://packagepal.dev"><strong>Visit the Live App »</strong></a>
 </p>
 
 ---
 
-![PackagePal Demo GIF](https://raw.githubusercontent.comsagar-kashyap/Package_Pal_Rate_Limiter/main/public/packagepal-demo.gif)
+![PackagePal Demo GIF](https://github.com/sagar-kashyap/Package_Pal_Rate_Limiter/blob/main/how%20to%20use%20package%20pal.gif)
 
 ## 🤔 Why PackagePal?
 
@@ -122,7 +122,7 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
 ## 📬 Contact
 
-[Sagar Kashyap] - [@YourTwitterHandle](https://twitter.com/Sagar_ketchup) - [sagarkashyap.cc@gmail.com](mailto:sagarkashyap.cc@gmail.com)
+[Sagar Kashyap] - [@Sagar_ketchup](https://twitter.com/Sagar_ketchup) - [sagarkashyap.cc@gmail.com](mailto:sagarkashyap.cc@gmail.com)
 
 Project Link: [https://github.com/sagar-kashyap/Package_Pal_Rate_Limiter](https://github.com/sagar-kashyap/Package_Pal_Rate_Limiter)
 # Run and deploy your AI Studio app
