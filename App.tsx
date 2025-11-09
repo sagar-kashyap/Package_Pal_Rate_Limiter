@@ -116,7 +116,7 @@ const App: React.FC = () => {
           <div className="mt-4 flex justify-center items-center gap-4">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-slate-300 font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 ease-in-out transform hover:-translate-y-0.5"
+            className="inline-flex mb-10 items-center gap-2 bg-slate-700 hover:bg-slate-600 text-slate-300 font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 ease-in-out transform hover:-translate-y-0.5"
             aria-label="Show application information"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -126,6 +126,7 @@ const App: React.FC = () => {
           </button>
           </div>
         <p>&copy; {new Date().getFullYear()} Package Pal. Powered by Gemini (via Backend).</p>
+        <p className="mt-4">Made with ❤️ in India by <a href="mailto:sagarkashyap.cc@gmail.com" className="text-sky-400 hover:underline">Sagar Kashyap</a></p>
       </footer>
             {isModalOpen && <InfoModal onClose={() => setIsModalOpen(false)} />}
     </div>

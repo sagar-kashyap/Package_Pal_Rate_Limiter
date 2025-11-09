@@ -56,7 +56,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ onClose }) => {
             </p>
             <p className="mt-1">
               If the model's limit is reached, you may also experience temporary unavailability. In such cases, please try again later.
-              We are working on improving capacity to better serve all users. Fell free to reach out to us if you want to support the project for increasing the limit.
+              We are working on improving capacity to better serve all users. Fell free to reach out to us if you want to support the project for increasing the limit. <a href="mailto:sagarkashyap.cc@gmail.com" className="text-sky-400 hover:underline">Email</a>
             </p>
           </div>
           <div>
