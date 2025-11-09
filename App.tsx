@@ -4,6 +4,7 @@ import PackageFinderForm from './components/PackageFinderForm';
 import PackageResultCard from './components/PackageResultCard';
 import LoadingSpinner from './components/LoadingSpinner';
 import ErrorMessage from './components/ErrorMessage';
+import InfoModal from './components/InfoModal';
 import { findSimilarPackages, findSimilarPackagesWithUserKey } from './services/geminiService';
 import { PackageSuggestion, FormField } from './types';
 import { DEFAULT_SOURCE_LANGUAGE, DEFAULT_TARGET_LANGUAGE } from './constants';
@@ -19,6 +20,7 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleInputChange = useCallback((field: FormField, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -111,8 +113,21 @@ const App: React.FC = () => {
       </main>
 
       <footer className="mt-12 text-center text-sm text-slate-500">
+          <div className="mt-4 flex justify-center items-center gap-4">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-slate-300 font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 ease-in-out transform hover:-translate-y-0.5"
+            aria-label="Show application information"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>App Info</span>
+          </button>
+          </div>
         <p>&copy; {new Date().getFullYear()} Package Pal. Powered by Gemini (via Backend).</p>
       </footer>
+            {isModalOpen && <InfoModal onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 };

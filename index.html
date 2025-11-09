@@ -23,6 +23,21 @@
   }
 }
 </script>
+<style>
+      @keyframes fadeInScale {
+        from {
+          transform: scale(0.95);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .animate-fade-in-scale {
+        animation: fadeInScale 0.2s ease-out forwards;
+      }
+    </style>
 <link rel="stylesheet" href="/index.css">
 </head>
   <body class="bg-slate-900 text-slate-100">
