@@ -39,7 +39,10 @@ export const findSimilarPackagesInBackend = async (
     ]
     If you cannot find any relevant packages or are unsure, return an empty JSON array [].
   `;
+  const MAX_RETRIES = 3;
+  let lastError: Error | null = null;
 
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
   try {
     const response: GenerateContentResponse = await ai.models.generateContent({
       model: GEMINI_MODEL_NAME,
@@ -77,11 +80,31 @@ export const findSimilarPackagesInBackend = async (
     return [];
 
   } catch (error) {
-    console.error("Error calling Gemini API or parsing response in backend:", error);
-    if (error instanceof Error) {
-        // More specific error handling could be added here based on Gemini API error types
-        throw new Error(`Failed to fetch package suggestions from Gemini: ${error.message}`);
+      console.error(`Error on attempt ${attempt} calling Gemini API:`, error);
+      lastError = error instanceof Error ? error : new Error(String(error));
+      
+      const errorMessage = lastError.message;
+      const isRetryable = errorMessage.includes('503') || 
+                          errorMessage.includes('UNAVAILABLE') || 
+                          errorMessage.includes('overloaded');
+
+      if (isRetryable && attempt < MAX_RETRIES) {
+        // Exponential backoff with jitter: 1s, 2s, 4s...
+        const delay = Math.pow(2, attempt - 1) * 1000 + Math.random() * 1000;
+        console.log(`Model overloaded. Retrying in ${delay.toFixed(0)}ms... (Attempt ${attempt}/${MAX_RETRIES})`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+      } else {
+        // Not a retryable error or max retries reached, so stop trying
+        break;
+      }
     }
-    throw new Error("An unknown error occurred while fetching package suggestions from Gemini.");
   }
+
+  // If the loop finished because of an error, throw a more informative error.
+  if (lastError) {
+    throw new Error(`Failed to fetch package suggestions from Gemini after ${MAX_RETRIES} attempts: ${lastError.message}`);
+  }
+  
+  // Fallback in case loop exits unexpectedly without success or a captured error
+  throw new Error("An unknown error occurred while fetching package suggestions from Gemini.");
 };

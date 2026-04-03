@@ -14,7 +14,7 @@ const App: React.FC = () => {
     sourcePackage: '',
     sourceLanguage: DEFAULT_SOURCE_LANGUAGE,
     targetLanguage: DEFAULT_TARGET_LANGUAGE,
-     userApiKey: '',
+    userApiKey: '',
   });
   const [results, setResults] = useState<PackageSuggestion[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -50,7 +50,7 @@ const App: React.FC = () => {
         return;
       }
       // const suggestions = await findSimilarPackages(sourcePackage, sourceLanguage, targetLanguage);
-       let suggestions: PackageSuggestion[];
+      let suggestions: PackageSuggestion[];
       if (userApiKey.trim()) {
         suggestions = await findSimilarPackagesWithUserKey(sourcePackage, sourceLanguage, targetLanguage, userApiKey);
       } else {
@@ -68,14 +68,25 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-sky-900 py-8 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
       <header className="text-center mb-10">
         <span className="text-5xl font-extrabold mr-2">
-         📦 
+          📦
         </span>
         <span className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300 mb-2">
-         Package Pal
+          Package Pal
         </span>
         <p className="text-lg text-slate-400 max-w-2xl mx-auto">
           Discover equivalent or similar software packages across different programming languages with the power of AI.
         </p>
+        {/* <div className="mt-6 flex justify-center">
+          <a href="https://www.producthunt.com/products/package-pal?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-package-pal" target="_blank" rel="noopener noreferrer">
+            <img
+              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1036151&theme=light&t=1762697124868"
+              alt="Package Pal - Find equivalent packages across languages with AI. | Product Hunt"
+              style={{ width: 250, height: 54 }}
+              width={250}
+              height={54}
+            />
+          </a>
+        </div> */}
       </header>
 
       <main className="w-full max-w-2xl">
@@ -113,7 +124,7 @@ const App: React.FC = () => {
       </main>
 
       <footer className="mt-12 text-center text-sm text-slate-500">
-          <div className="mt-4 flex justify-center items-center gap-4">
+        <div className="mt-4 flex justify-center items-center gap-4">
           <button
             onClick={() => setIsModalOpen(true)}
             className="inline-flex mb-10 items-center gap-2 bg-slate-700 hover:bg-slate-600 text-slate-300 font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 ease-in-out transform hover:-translate-y-0.5"
@@ -124,11 +135,12 @@ const App: React.FC = () => {
             </svg>
             <span>App Info</span>
           </button>
-          </div>
+
+        </div>
         <p>&copy; {new Date().getFullYear()} Package Pal. Powered by Gemini (via Backend).</p>
         <p className="mt-4">Made with ❤️ in India by <a href="mailto:sagarkashyap.cc@gmail.com" className="text-sky-400 hover:underline">Sagar Kashyap</a></p>
       </footer>
-            {isModalOpen && <InfoModal onClose={() => setIsModalOpen(false)} />}
+      {isModalOpen && <InfoModal onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 };

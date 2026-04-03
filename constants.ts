@@ -22,6 +22,7 @@ export const PROGRAMMING_LANGUAGES: LanguageOption[] = [
   { value: "lua", label: "Lua" },
   { value: "r", label: "R" },
   { value: "cpp", label: "C++"},
+  { value: ".net", label: ".Net"},
 ];
 
 export const DEFAULT_SOURCE_LANGUAGE = "javascript";
