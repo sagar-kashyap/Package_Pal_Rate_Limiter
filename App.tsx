@@ -1,10 +1,12 @@
-
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PackageFinderForm from './components/PackageFinderForm';
 import PackageResultCard from './components/PackageResultCard';
 import LoadingSpinner from './components/LoadingSpinner';
 import ErrorMessage from './components/ErrorMessage';
 import InfoModal from './components/InfoModal';
+import AboutUs from './components/AboutUs';
+import ContactUs from './components/ContactUs';
+import PrivacyPolicy from './components/PrivacyPolicy';
 import { findSimilarPackages, findSimilarPackagesWithUserKey } from './services/geminiService';
 import { PackageSuggestion, FormField } from './types';
 import { DEFAULT_SOURCE_LANGUAGE, DEFAULT_TARGET_LANGUAGE } from './constants';
@@ -22,6 +24,33 @@ const App: React.FC = () => {
   const [hasSearched, setHasSearched] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+  // Dynamic Routing state mapping url path
+  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'contact' | 'privacy'>(() => {
+    const path = window.location.pathname;
+    if (path === '/about') return 'about';
+    if (path === '/contact') return 'contact';
+    if (path === '/privacy') return 'privacy';
+    return 'home';
+  });
+
+  const navigateTo = useCallback((page: 'home' | 'about' | 'contact' | 'privacy') => {
+    setCurrentPage(page);
+    const path = page === 'home' ? '/' : `/${page}`;
+    window.history.pushState(null, '', path);
+  }, []);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      if (path === '/about') setCurrentPage('about');
+      else if (path === '/contact') setCurrentPage('contact');
+      else if (path === '/privacy') setCurrentPage('privacy');
+      else setCurrentPage('home');
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const handleInputChange = useCallback((field: FormField, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   }, []);
@@ -32,10 +61,6 @@ const App: React.FC = () => {
     setError(null);
     setResults([]);
     setHasSearched(true);
-
-    // API Key check removed from frontend. Backend handles API key configuration.
-    // If process.env.API_KEY was critical for some other frontend logic (it wasn't here),
-    // that would need reassessment.
 
     try {
       const { sourcePackage, sourceLanguage, targetLanguage, userApiKey } = formData;
@@ -49,7 +74,7 @@ const App: React.FC = () => {
         setIsLoading(false);
         return;
       }
-      // const suggestions = await findSimilarPackages(sourcePackage, sourceLanguage, targetLanguage);
+      
       let suggestions: PackageSuggestion[];
       if (userApiKey.trim()) {
         suggestions = await findSimilarPackagesWithUserKey(sourcePackage, sourceLanguage, targetLanguage, userApiKey);
@@ -66,68 +91,80 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-sky-900 py-8 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
-      <header className="text-center mb-10">
-        <span className="text-5xl font-extrabold mr-2">
-          📦
-        </span>
-        <span className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300 mb-2">
-          Package Pal
-        </span>
-        <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-          Discover equivalent or similar software packages across different programming languages with the power of AI.
-        </p>
-        {/* <div className="mt-6 flex justify-center">
-          <a href="https://www.producthunt.com/products/package-pal?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-package-pal" target="_blank" rel="noopener noreferrer">
-            <img
-              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1036151&theme=light&t=1762697124868"
-              alt="Package Pal - Find equivalent packages across languages with AI. | Product Hunt"
-              style={{ width: 250, height: 54 }}
-              width={250}
-              height={54}
-            />
-          </a>
-        </div> */}
-      </header>
+      {/* Navigation bar */}
+      <nav className="w-full max-w-4xl flex flex-col sm:flex-row justify-between items-center py-4 px-6 mb-8 bg-slate-800/40 backdrop-blur-md border border-slate-700/40 rounded-xl shadow-lg gap-4">
+        <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigateTo('home')}>
+          <span className="text-2xl">📦</span>
+          <span className="text-xl font-bold bg-gradient-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent">Package Pal</span>
+        </div>
+        <div className="flex gap-4 sm:gap-6 text-sm font-medium text-slate-300">
+          <button onClick={() => navigateTo('home')} className={`hover:text-sky-400 transition-colors ${currentPage === 'home' ? 'text-sky-400 font-semibold border-b-2 border-sky-400 pb-1' : 'pb-1'}`}>Home</button>
+          <button onClick={() => navigateTo('about')} className={`hover:text-sky-400 transition-colors ${currentPage === 'about' ? 'text-sky-400 font-semibold border-b-2 border-sky-400 pb-1' : 'pb-1'}`}>About</button>
+          <button onClick={() => navigateTo('contact')} className={`hover:text-sky-400 transition-colors ${currentPage === 'contact' ? 'text-sky-400 font-semibold border-b-2 border-sky-400 pb-1' : 'pb-1'}`}>Contact</button>
+          <button onClick={() => navigateTo('privacy')} className={`hover:text-sky-400 transition-colors ${currentPage === 'privacy' ? 'text-sky-400 font-semibold border-b-2 border-sky-400 pb-1' : 'pb-1'}`}>Privacy Policy</button>
+        </div>
+      </nav>
 
-      <main className="w-full max-w-2xl">
-        <PackageFinderForm
-          formData={formData}
-          onInputChange={handleInputChange}
-          onSubmit={handleSubmit}
-          isLoading={isLoading}
-        />
-
-        {isLoading && <LoadingSpinner />}
-        {error && <ErrorMessage message={error} />}
-
-        {!isLoading && !error && hasSearched && results.length === 0 && (
-          <div className="mt-8 text-center bg-slate-800 p-6 rounded-lg shadow-xl">
-            <h3 className="text-xl font-semibold text-sky-400 mb-2">No Suggestions Found</h3>
-            <p className="text-slate-300">
-              We couldn't find any similar packages for your query. Try refining your search terms or check the languages selected.
+      {/* Main views rendering */}
+      {currentPage === 'home' && (
+        <>
+          <header className="text-center mb-10">
+            <span className="text-5xl font-extrabold mr-2">
+              📦
+            </span>
+            <span className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300 mb-2">
+              Package Pal
+            </span>
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+              Discover equivalent or similar software packages across different programming languages with the power of AI.
             </p>
-          </div>
-        )}
+          </header>
 
-        {!isLoading && !error && results.length > 0 && (
-          <div className="mt-10">
-            <h2 className="text-3xl font-bold text-center mb-8 text-sky-300">
-              Suggested Packages
-            </h2>
-            <div className="space-y-6">
-              {results.map((pkg, index) => (
-                <PackageResultCard key={`${pkg.name}-${index}`} packageInfo={pkg} index={index} />
-              ))}
-            </div>
-          </div>
-        )}
-      </main>
+          <main className="w-full max-w-2xl">
+            <PackageFinderForm
+              formData={formData}
+              onInputChange={handleInputChange}
+              onSubmit={handleSubmit}
+              isLoading={isLoading}
+            />
+
+            {isLoading && <LoadingSpinner />}
+            {error && <ErrorMessage message={error} />}
+
+            {!isLoading && !error && hasSearched && results.length === 0 && (
+              <div className="mt-8 text-center bg-slate-800 p-6 rounded-lg shadow-xl">
+                <h3 className="text-xl font-semibold text-sky-400 mb-2">No Suggestions Found</h3>
+                <p className="text-slate-300">
+                  We couldn't find any similar packages for your query. Try refining your search terms or check the languages selected.
+                </p>
+              </div>
+            )}
+
+            {!isLoading && !error && results.length > 0 && (
+              <div className="mt-10">
+                <h2 className="text-3xl font-bold text-center mb-8 text-sky-300">
+                  Suggested Packages
+                </h2>
+                <div className="space-y-6">
+                  {results.map((pkg, index) => (
+                    <PackageResultCard key={`${pkg.name}-${index}`} packageInfo={pkg} index={index} />
+                  ))}
+                </div>
+              </div>
+            )}
+          </main>
+        </>
+      )}
+
+      {currentPage === 'about' && <AboutUs />}
+      {currentPage === 'contact' && <ContactUs />}
+      {currentPage === 'privacy' && <PrivacyPolicy />}
 
       <footer className="mt-12 text-center text-sm text-slate-500">
         <div className="mt-4 flex justify-center items-center gap-4">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="inline-flex mb-10 items-center gap-2 bg-slate-700 hover:bg-slate-600 text-slate-300 font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 ease-in-out transform hover:-translate-y-0.5"
+            className="inline-flex mb-8 items-center gap-2 bg-slate-700 hover:bg-slate-600 text-slate-300 font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 ease-in-out transform hover:-translate-y-0.5"
             aria-label="Show application information"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -135,8 +172,17 @@ const App: React.FC = () => {
             </svg>
             <span>App Info</span>
           </button>
-
         </div>
+
+        {/* Footer Navigation links */}
+        <div className="mb-6 flex justify-center items-center gap-4 text-xs text-slate-400">
+          <button onClick={() => navigateTo('about')} className="hover:underline hover:text-sky-400">About Us</button>
+          <span>•</span>
+          <button onClick={() => navigateTo('contact')} className="hover:underline hover:text-sky-400">Contact Us</button>
+          <span>•</span>
+          <button onClick={() => navigateTo('privacy')} className="hover:underline hover:text-sky-400">Privacy Policy</button>
+        </div>
+
         <p>&copy; {new Date().getFullYear()} Package Pal. Powered by Gemini (via Backend).</p>
         <p className="mt-4">Made with ❤️ in India by <a href="mailto:sagarkashyap.cc@gmail.com" className="text-sky-400 hover:underline">Sagar Kashyap</a></p>
       </footer>
