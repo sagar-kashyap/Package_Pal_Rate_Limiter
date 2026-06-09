@@ -18,7 +18,7 @@ const AboutUs: React.FC = () => {
             <span className="text-sky-400">💡</span> Our Mission
           </h2>
           <p className="text-slate-400 text-sm leading-relaxed">
-            As developers transition between programming languages—whether learning a new framework, refactoring legacy services, or rewriting a tool in a more efficient language—finding the right library equivalents can be time-consuming. 
+            As developers transition between programming languages—whether learning a new framework, refactoring legacy services, or rewriting a tool in a more efficient language—finding the right library equivalents can be time-consuming.
           </p>
           <p className="text-slate-400 text-sm leading-relaxed mt-2">
             Package Pal was created to instantly bridge that gap using state-of-the-art AI. We help you map your existing knowledge from one package ecosystem straight into another.
@@ -65,7 +65,7 @@ const AboutUs: React.FC = () => {
           Bring package suggestions straight to your coding workflow. Search, discover, and translate packages inline inside your editor.
         </p>
         <a
-          href="https://marketplace.visualstudio.com/items?itemName=PackagePal"
+          href="https://marketplace.visualstudio.com/items?itemName=SagarKashyap.package-pal"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-cyan-500 hover:from-sky-600 hover:to-cyan-600 text-slate-950 font-bold py-2 px-6 rounded-lg shadow-lg hover:shadow-sky-500/10 transition-all duration-200"

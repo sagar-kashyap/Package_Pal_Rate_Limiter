@@ -74,7 +74,7 @@ const App: React.FC = () => {
         setIsLoading(false);
         return;
       }
-      
+
       let suggestions: PackageSuggestion[];
       if (userApiKey.trim()) {
         suggestions = await findSimilarPackagesWithUserKey(sourcePackage, sourceLanguage, targetLanguage, userApiKey);
@@ -105,7 +105,7 @@ const App: React.FC = () => {
             <button onClick={() => navigateTo('privacy')} className={`hover:text-sky-400 transition-colors ${currentPage === 'privacy' ? 'text-sky-400 font-semibold border-b-2 border-sky-400 pb-1' : 'pb-1'}`}>Privacy Policy</button>
           </div>
           <a
-            href="https://marketplace.visualstudio.com/items?itemName=PackagePal"
+            href="https://marketplace.visualstudio.com/items?itemName=SagarKashyap.package-pal"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-sky-500 hover:bg-sky-600 text-slate-950 text-xs font-bold py-1.5 px-3 rounded-lg flex items-center gap-1.5 shadow-md shadow-sky-500/10 hover:shadow-sky-500/20 transition-all duration-200"
@@ -133,7 +133,7 @@ const App: React.FC = () => {
             </p>
             <div className="mt-5 flex justify-center">
               <a
-                href="https://marketplace.visualstudio.com/items?itemName=PackagePal"
+                href="https://marketplace.visualstudio.com/items?itemName=SagarKashyap.package-pal"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/60 text-sky-400 hover:text-sky-300 text-xs font-semibold py-1.5 px-4 rounded-full shadow-lg transition-all duration-200"
