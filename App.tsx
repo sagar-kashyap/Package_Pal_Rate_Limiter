@@ -35,7 +35,10 @@ const App: React.FC = () => {
 
   const navigateTo = useCallback((page: 'home' | 'about' | 'contact' | 'privacy') => {
     setCurrentPage(page);
-    const path = page === 'home' ? '/' : `/${page}`;
+    let path = '/';
+    if (page !== 'home') {
+      path = `/${page}`;
+    }
     window.history.pushState(null, '', path);
   }, []);
 

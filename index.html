@@ -81,7 +81,81 @@
      crossorigin="anonymous"></script>
   </head>
   <body class="bg-slate-900 text-slate-100">
-    <div id="root"></div>
+    <div id="root">
+      <!-- Static content fallback for SEO, web crawlers, and Google AdSense validation -->
+      <div style="padding: 24px; max-width: 800px; margin: 0 auto; font-family: system-ui, -apple-system, sans-serif; color: #cbd5e1; line-height: 1.6;">
+        <header style="text-align: center; margin-bottom: 40px; padding: 20px 0;">
+          <span style="font-size: 48px; display: block; margin-bottom: 12px;">📦</span>
+          <h1 style="font-size: 32px; font-weight: 800; color: #38bdf8; margin: 0 0 12px 0;">Package Pal</h1>
+          <p style="font-size: 18px; color: #94a3b8; margin: 0; max-width: 600px; margin: 0 auto;">
+            Discover equivalent or similar software packages and libraries across different programming languages with the power of AI.
+          </p>
+        </header>
+
+        <nav style="margin-bottom: 40px; border-bottom: 1px solid #334155; padding-bottom: 20px; text-align: center; font-size: 14px; font-weight: 600;">
+          <a href="/" style="margin: 0 15px; text-decoration: none; color: #38bdf8;">Home</a>
+          <span style="color: #475569;">•</span>
+          <a href="/about" style="margin: 0 15px; text-decoration: none; color: #38bdf8;">About Us</a>
+          <span style="color: #475569;">•</span>
+          <a href="/contact" style="margin: 0 15px; text-decoration: none; color: #38bdf8;">Contact Us</a>
+          <span style="color: #475569;">•</span>
+          <a href="/privacy" style="margin: 0 15px; text-decoration: none; color: #38bdf8;">Privacy Policy</a>
+        </nav>
+
+        <main style="background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 32px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);">
+          <section id="search-info" style="margin-bottom: 40px;">
+            <h2 style="font-size: 22px; font-weight: 700; color: #f1f5f9; margin-top: 0; margin-bottom: 12px;">Cross-Language Package Finder & Library alternatives</h2>
+            <p style="margin: 0 0 16px 0;">
+              Package Pal makes it easy to find equivalent packages across Python, Go, Rust, Node.js (npm), Java, PHP, Ruby, and many other programming languages.
+            </p>
+            <p style="margin: 0;">
+              Simply choose the source language, specify your target language, enter the library name you are familiar with, and our AI model will instantly suggest the closest semantic matches, complete with installation commands, usage examples, and documentation links.
+            </p>
+          </section>
+
+          <section id="about-info" style="margin-bottom: 40px; border-top: 1px solid #334155; padding-top: 32px;">
+            <h2 style="font-size: 22px; font-weight: 700; color: #f1f5f9; margin-top: 0; margin-bottom: 12px;">About Package Pal</h2>
+            <p style="margin: 0 0 16px 0;">
+              As developers transition between programming languages—whether learning a new framework, refactoring legacy services, or rewriting a tool in a more efficient language—finding the right library equivalents can be time-consuming.
+            </p>
+            <p style="margin: 0 0 20px 0;">
+              Package Pal was created to instantly bridge that gap using state-of-the-art AI. We help you map your existing knowledge from one package ecosystem straight into another.
+            </p>
+            <h3 style="font-size: 16px; font-weight: 600; color: #f1f5f9; margin-bottom: 12px;">Key Features:</h3>
+            <ul style="padding-left: 20px; margin: 0; list-style-type: square;">
+              <li style="margin-bottom: 8px;"><strong>Instant Translation:</strong> Discover similar package alternatives with documentation URLs in seconds.</li>
+              <li style="margin-bottom: 8px;"><strong>Cross-Language Support:</strong> Search across 15+ popular languages including Go, Rust, Python, JavaScript, Java, PHP, C++, and Ruby.</li>
+              <li style="margin-bottom: 8px;"><strong>API Key Control:</strong> Option to run queries completely client-side using your own Gemini API key for higher rate limits.</li>
+              <li style="margin-bottom: 8px;"><strong>IDE Extension:</strong> Search and discover packages directly within your editor window.</li>
+            </ul>
+          </section>
+
+          <section id="privacy-info" style="margin-bottom: 40px; border-top: 1px solid #334155; padding-top: 32px;">
+            <h2 style="font-size: 22px; font-weight: 700; color: #f1f5f9; margin-top: 0; margin-bottom: 12px;">Privacy &amp; Terms</h2>
+            <p style="margin: 0 0 16px 0;">
+              We are committed to protecting your personal information and your right to privacy. We collect information that you voluntarily provide to us when you perform package searches, input API keys, or contact us.
+            </p>
+            <p style="margin: 0;">
+              <strong>Google AdSense &amp; Third-Party Cookies:</strong> We display advertisements using Google AdSense. Google, as a third-party vendor, uses cookies to serve ads on our site. Users may opt out of personalized advertising by visiting Google Ad Settings or aboutads.info.
+            </p>
+          </section>
+
+          <section id="contact-info" style="border-top: 1px solid #334155; padding-top: 32px;">
+            <h2 style="font-size: 22px; font-weight: 700; color: #f1f5f9; margin-top: 0; margin-bottom: 12px;">Contact Information</h2>
+            <p style="margin: 0 0 12px 0;">
+              If you have any questions, feedback, or inquiries regarding Package Pal, please feel free to reach out to us:
+            </p>
+            <p style="margin: 0; font-weight: 600;">
+              Contact Email: <a href="mailto:sagarkashyap.cc@gmail.com" style="color: #38bdf8; text-decoration: underline;">sagarkashyap.cc@gmail.com</a>
+            </p>
+          </section>
+        </main>
+
+        <footer style="text-align: center; margin-top: 60px; font-size: 12px; color: #64748b; border-top: 1px solid #334155; padding-top: 20px;">
+          <p>&copy; 2026 Package Pal. Powered by Gemini. All rights reserved.</p>
+        </footer>
+      </div>
+    </div>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>
